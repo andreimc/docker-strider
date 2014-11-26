@@ -23,6 +23,7 @@ RUN mkdir -p /home/strider && mkdir -p /opt/strider
 RUN adduser --disabled-password --gecos "" --home /home/strider strider
 RUN chown -R strider:strider /home/strider
 RUN chown -R strider:strider /opt/strider
+RUN chown -R strider:strider /usr/local
 RUN ln -s /opt/strider/src/bin/strider /usr/local/bin/strider
 USER strider
 ENV HOME /home/strider
@@ -32,7 +33,6 @@ RUN git clone https://github.com/sstephenson/rbenv.git $HOME/.rbenv
 RUN git clone https://github.com/sstephenson/ruby-build.git $HOME/.rbenv/plugins/ruby-build
 RUN $HOME/.rbenv/plugins/ruby-build/install.sh
 ENV PATH ./home/strider/.rbenv/bin:$PATH
-RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh # or /etc/profile
 RUN echo 'eval "$(rbenv init -)"' >> $HOME/.bashrc
 
 ENV CONFIGURE_OPTS --disable-install-doc
