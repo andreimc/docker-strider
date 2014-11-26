@@ -21,6 +21,7 @@ ADD sv_stdout.conf /etc/supervisor/conf.d/
 
 VOLUME /home/strider/.strider
 RUN mkdir -p /home/strider && mkdir -p /opt/strider
+RUN echo -e "StrictHostKeyChecking no" >> /etc/ssh/ssh_config
 RUN adduser --disabled-password --gecos "" --home /home/strider strider
 RUN chown -R strider:strider /home/strider
 RUN chown -R strider:strider /opt/strider
