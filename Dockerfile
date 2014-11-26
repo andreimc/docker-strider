@@ -41,7 +41,9 @@ RUN echo 'eval "$(rbenv init -)"' >> $HOME/.bashrc
 ENV CONFIGURE_OPTS --disable-install-doc
 RUN rbenv install 2.1.5
 RUN echo 'gem: --no-rdoc --no-ri' >> $HOME/.gemrc
+ENV PATH /home/strider/.rbenv/shims/:$PATH
 RUN bash -l -c 'rbenv global 2.1.5; gem install bundler;'
+RUN rbenv rehash
 
 RUN git clone --branch $STRIDER_TAG --depth 1 $STRIDER_REPO /opt/strider/src && \
   cd /opt/strider/src && npm install && npm run postinstall && npm run build
