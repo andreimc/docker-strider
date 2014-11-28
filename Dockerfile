@@ -32,5 +32,5 @@ RUN git clone --branch $STRIDER_TAG --depth 1 $STRIDER_REPO /opt/strider/src && 
 COPY start.sh /usr/local/bin/start.sh
 ADD strider.conf /etc/supervisor/conf.d/strider.conf
 EXPOSE 3000
-ONBUILD USER root
-ONBUILD CMD ["bash", "/usr/local/bin/start.sh"]
+USER root
+CMD ["bash", "/usr/local/bin/start.sh"]
